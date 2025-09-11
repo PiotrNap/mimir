@@ -23,22 +23,37 @@ All providers have one or more interface(s). For example, the **KoiosProvider** 
 export class KoiosProvider implements IFetcher, ISubmitter {}
 ```
 
-To see the latest up-to-date list of interfaces used by Mesh, visit the GitHub repo, <Link href="https://github.com/MeshJS/mesh/tree/main/packages/module/src/common/contracts">packages/module/src/common/contracts</Link>.
+To see the latest up-to-date list of interfaces used by Mesh, visit the GitHub repo (<Link href="https://github.com/MeshJS/mesh/blob/main/packages/mesh-common/src/interfaces/fetcher.ts">Fetcher</Link> & <Link href="https://github.com/MeshJS/mesh/blob/main/packages/mesh-common/src/interfaces/submitter.ts">Submitter</Link>).
 
 To create a custom provider class, one must create functions with the same name, input parameters, and return type as the list of defined methods for each interface. Doing so will allow the functions to work as expected when building transactions and any of the other many functions provided in Mesh.
 
-For example, as of writing, IFetcher has 6 functions (see packages/module/src/common/contracts/fetcher.ts for latest implemention):
+For example, as of writing, IFetcher has 12 functions.
 
 ```tsx
-import type { AccountInfo, AssetMetadata, Protocol, UTxO } from '@mesh/common/types';
-
 export interface IFetcher {
   fetchAccountInfo(address: string): Promise<AccountInfo>;
   fetchAddressUTxOs(address: string, asset?: string): Promise<UTxO[]>;
-  fetchAssetAddresses(asset: string): Promise<{ address: string; quantity: string }[]>;
+  fetchAddressTxs(
+    address: string,
+    options?: IFetcherOptions,
+  ): Promise<TransactionInfo[]>;
+  fetchAssetAddresses(
+    asset: string,
+  ): Promise<{ address: string; quantity: string }[]>;
   fetchAssetMetadata(asset: string): Promise<AssetMetadata>;
-  fetchHandleAddress(handle: string): Promise<string>;
+  fetchBlockInfo(hash: string): Promise<BlockInfo>;
+  fetchCollectionAssets(
+    policyId: string,
+    cursor?: number | string,
+  ): Promise<{ assets: Asset[]; next?: string | number | null }>;
   fetchProtocolParameters(epoch: number): Promise<Protocol>;
+  fetchTxInfo(hash: string): Promise<TransactionInfo>;
+  fetchUTxOs(hash: string, index?: number): Promise<UTxO[]>;
+  fetchGovernanceProposal(
+    txHash: string,
+    certIndex: number,
+  ): Promise<GovernanceProposalInfo>;
+  get(url: string): Promise<any>;
 }
 ```
 
@@ -47,7 +62,7 @@ As such, **KoiosProvider** must implement these functions as defined in **IFetch
 
 ## Implement Your Own Provider
 
-If you want to begin utilizing your own provider, looking at one of the existing providers is the ideal way to get started. Visit the GitHub repo, <Link href="https://github.com/MeshJS/mesh/tree/main/packages/module/src/providers">packages/module/src/providers</Link> to see a list of providers.
+If you want to begin utilizing your own provider, looking at one of the existing providers is the ideal way to get started. Visit the <Link href="https://github.com/MeshJS/mesh/tree/main/packages/mesh-provider/src">GitHub repo</Link>, to see a list of providers.
 
 This code base below can be used as a starting point:
 

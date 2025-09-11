@@ -146,7 +146,7 @@ const blockfrostKey = 'BLOCKFROST_KEY_HERE';
 
 ### 5. Build the minting transaction [!toc]
 
-In this guide, we are building a minting transaction, but it could be any transactions. <Link href="/apis/transaction">Learn more about Transaction</Link>.
+In this guide, we are building a minting transaction, but it could be any transactions. <Link href="/apis/txbuilder">Learn more about Transaction</Link>.
 
 Firstly, we need a blockchain provider, in this guide, we will import **BlockfrostProvider**, but you can use other providers as well:
 
@@ -173,7 +173,7 @@ const walletAddress = wallet.getPaymentAddress();
 const forgingScript = ForgeScript.withOneSignature(walletAddress);
 ```
 
-Then, lets create a new Transaction, loop through each recipient, and mint an assets with **mintAsset** (<Link href="/apis/transaction">Learn more about minting transactions</Link>):
+Then, lets create a new Transaction, loop through each recipient, and mint an assets with **mintAsset** (<Link href="/apis/txbuilder/minting">Learn more about minting transactions</Link>):
 
 ```tsx
 const tx = new Transaction({ initiator: wallet });

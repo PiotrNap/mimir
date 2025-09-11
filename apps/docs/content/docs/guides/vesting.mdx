@@ -29,7 +29,7 @@ In this example, we define a `VestingDatum` that contains the following fields:
 - `owner`: The credentials (public key hash) of the owner of the funds.
 - `beneficiary`: The credentials (public key hash) of the beneficiary of the funds.
 
-This datum can be found in `aiken-vesting/aiken-workspace/lib/vesting/types.ak`.
+This datum can be found [here](https://github.com/MeshJS/examples/blob/main/aiken-vesting/aiken-workspace/validators/vesting.ak#L8).
 
 Next, we define the spend validator.
 
@@ -65,7 +65,7 @@ Or:
 - The transaction must be signed by beneficiary
 - The transaction must be valid after the lockup period
 
-This validator can be found in `aiken-vesting/aiken-workspace/validators/vesting.ak`.
+This validator can be found [here](https://github.com/MeshJS/examples/blob/main/aiken-vesting/aiken-workspace/validators/vesting.ak#L17).
 
 ### How it works [!toc]
 
@@ -91,7 +91,7 @@ The test script includes the following test cases:
 - fail unlocking with only beneficiary signature
 - fail unlocking with only time passed
 
-We recommend you to check out `aiken-vesting/aiken-workspace/validators/tests/vesting.ak` to learn more.
+We recommend you to check out [this code](https://github.com/MeshJS/examples/blob/main/aiken-vesting/aiken-workspace/validators/vesting.ak) to learn more.
 
 
 ## Compile and build script
@@ -102,7 +102,7 @@ To compile the script, run the following command:
 aiken build
 ```
 
-This command will generate a CIP-0057 Plutus blueprint, which you can find in `aiken-vesting/aiken-workspace/plutus.json`.
+This command will generate a CIP-0057 Plutus blueprint, which you can review [here](https://github.com/MeshJS/examples/blob/main/aiken-vesting/aiken-workspace/plutus.json).
 
 
 ## Off-Chain code
@@ -168,7 +168,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-To execute this code, ensure you have defined blockfrost key in the `.env` file. You can also define your wallet mnemonic in `aiken-vesting/src/configs.ts` file.
+To execute this code, ensure you have defined blockfrost key in the `.env` file (view an example file [here](https://github.com/MeshJS/examples/blob/main/aiken-vesting/.env.example)).
 
 You can run the following command execute the deposit funds code:
 
@@ -263,7 +263,7 @@ const signedTx = await wallet.signTx(unsignedTx, true);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-To execute this code, update `aiken-vesting/src/withdraw-fund.ts` with the transaction hash from the deposit transaction. Ensure you have defined blockfrost key in the `.env` file. You can also define your wallet mnemonic in `aiken-vesting/src/configs.ts` file.
+To execute this code, copy the transaction hash from the deposit transaction (you will need it when prompted during the next step). Ensure you have defined the blockfrost key in the `.env` file, as well as your wallet mnemonic.
 
 Run the following command:
 
