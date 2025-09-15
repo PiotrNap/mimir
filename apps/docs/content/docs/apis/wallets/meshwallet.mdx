@@ -85,7 +85,7 @@ const wallet = new MeshWallet({
 With the `wallet` loaded, you can sign transactions, we will see how to do this in the next section, for now lets get the wallet's address:
 
 ```tsx
-const address = wallet.getChangeAddress();
+const address = await wallet.getChangeAddress();
 ```
 
 
@@ -167,7 +167,7 @@ await wallet.init()
 With the `wallet` loaded, you can sign transactions, we will see how to do this in the next section, for now lets get the wallet's address:
 
 ```tsx
-const address = wallet.getChangeAddress();
+const address = await wallet.getChangeAddress();
 ```
 
 
@@ -294,7 +294,7 @@ Other network IDs may be returned by wallets, but these are not governed by CIP-
   Get currently connected network
 
   ```tsx
-  const networkId = wallet.getNetworkId();
+  const networkId = await wallet.getNetworkId();
   ```
 </Card>
 
@@ -311,7 +311,7 @@ Reward addresses typically start with the `stake` prefix, making them easily ide
   Get stake addresses
 
   ```tsx
-  const rewardAddresses = wallet.getRewardAddresses();
+  const rewardAddresses = await wallet.getRewardAddresses();
   ```
 </Card>
 
@@ -335,7 +335,7 @@ Unused addresses are important for maintaining privacy and security in transacti
   Get addresses that are unused
 
   ```tsx
-  const unusedAddresses = wallet.getUnusedAddresses();
+  const unusedAddresses = await wallet.getUnusedAddresses();
   ```
 </Card>
 
@@ -360,7 +360,7 @@ Tracking used addresses is essential for analyzing transaction history and manag
   Get addresses that are used
 
   ```tsx
-  const usedAddresses = wallet.getUsedAddresses();
+  const usedAddresses = await wallet.getUsedAddresses();
   ```
 </Card>
 
